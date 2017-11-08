@@ -69,10 +69,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-my-blog" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-09-29_Laravel" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/p/7bb00f09.html" class="article-date">
-  <time datetime="2017-11-08T12:43:56.000Z" itemprop="datePublished">2017-11-08</time>
+    <a href="/p/63720.html" class="article-date">
+  <time datetime="2017-09-29T10:52:11.000Z" itemprop="datePublished">2017-09-29</time>
 </a>
     
   </div>
@@ -83,7 +83,166 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/p/7bb00f09.html">my blog</a>
+      <a class="article-title" href="/p/63720.html">Laravel框架中的增删改查</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="​1-模型定义"><a href="#​1-模型定义" class="headerlink" title="​1.模型定义"></a>​1.模型定义</h2><pre><code>use App\ModelName;
+class ModelName extends Model
+{
+    protected $table = &apos;member&apos;;
+    protected $primaryKey = &apos;id&apos;;
+    protected $fillable = [&apos;name&apos;, &apos;age&apos;, &apos;email&apos;];//允许入库
+    protected $guarded = [&apos;price&apos;,];//排除入库
+    // $fillable与$guarded 二选一设置
+    public $timestamps = false;
+}
+</code></pre><h2 id="2-接收数据"><a href="#2-接收数据" class="headerlink" title="2.接收数据"></a>2.接收数据</h2><pre><code>public function demo(Request $request)
+{
+  $data = $request-&gt;all();
+  $name = $request-&gt;input(&apos;name&apos;);
+  $info = $request-&gt;only([&apos;name&apos;,&apos;age&apos;]);
+  $info = $request-&gt;except(&apos;name&apos;);
+  $res = $request-&gt;has(&apos;id&apos;);
+  $file = $request-&gt;file(&apos;fileName&apos;);
+}
+</code></pre><h2 id="3-查询数据"><a href="#3-查询数据" class="headerlink" title="3.查询数据"></a>3.查询数据</h2><pre><code>Manager::find(2);                  //Manager对象,查主键
+Manager::where(&apos;&apos;,&apos;&apos;,&apos;&apos;)-&gt;first(); //Manager对象,查其他
+Manager::find([2,4]);                //collection集合,查主键
+Manager::where(&apos;&apos;,&apos;&apos;,&apos;&apos;)-&gt;get();   //collection集合,查其他
+Manager::all();                       //collection集合,查所有
+</code></pre><h2 id="4-聚合查询"><a href="#4-聚合查询" class="headerlink" title="4.聚合查询"></a>4.聚合查询</h2><pre><code>select([&apos;id&apos;,&apos;name&apos;])//选择字段
+orderBy(&apos;id&apos;,&apos;desc&apos;)//排序
+offset(2)-&gt;limit(1)//分页
+</code></pre><h2 id="5-聚合函数"><a href="#5-聚合函数" class="headerlink" title="5.聚合函数"></a>5.聚合函数</h2><pre><code>ModelName::count()/sum()/avg()/max()/min()
+</code></pre><h2 id="6-默认分页"><a href="#6-默认分页" class="headerlink" title="6.默认分页"></a>6.默认分页</h2><pre><code>{{ $data->render()}}  {{$data->currentPage()}} / {{$data->total()}}
+</code></pre><h2 id="7-自动验证"><a href="#7-自动验证" class="headerlink" title="7.自动验证"></a>7.自动验证</h2><pre><code>$this-&gt;validate($request, []);
+required: 不能为空
+unique:表名，字段，需要排除的ID
+max:255最长255个字符
+min:1最少1个字符
+email:验证邮箱是否合法
+confirmed:验证两个字段是否相同
+integer:验证字段必须是整型
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://16890.github.io/p/63720.html" data-id="cj9r3uo9j0005s0vyascfxzow" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-08-16_cat" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/p/40615.html" class="article-date">
+  <time datetime="2017-08-16T15:04:27.000Z" itemprop="datePublished">2017-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/p/40615.html">故事：猫的出生理解依赖注入 控制反转</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><!--markdown-->依赖注入就是：向我们的<strong>程序</strong>中传入了一个已经被<strong>实例化好了</strong>的<strong>对象</strong>，这个对象内部的改变我们<strong>不需要</strong>知道，只要这个对象父类的<strong>接口没有变</strong>。先记住这句话，我们再来举一个例子。</p>
+<hr>
+<h2 id="故事：猫的出生理解依赖注入-控制反转"><a href="#故事：猫的出生理解依赖注入-控制反转" class="headerlink" title="故事：猫的出生理解依赖注入 控制反转"></a>故事：猫的出生理解依赖注入 控制反转</h2><p>大场景： 猫必须吃可以让他们变色的水果 才能成为真正不同颜色的猫！ 比如橘猫要吃橘子！<br>场景： 猫的出生 </p>
+<h2 id="强耦合关系-猫A和上帝的故事："><a href="#强耦合关系-猫A和上帝的故事：" class="headerlink" title="强耦合关系: 猫A和上帝的故事："></a>强耦合关系: 猫A和上帝的故事：</h2><p>上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫A：好！我这就生产。<br>猫A：死活生产不出来橘子，原来秘方是错的！<br>上帝：嘿嘿嘿~ 那就别出生了呗。你自己生产不出来。<br>猫A：妈卖批！</p>
+<pre><code>class 橘猫A
+{
+    public $猫吃的橘子;
+    public function __contruct(){
+        $this-&gt;猫吃的橘子 = new 橘子秘方;
+    }
+}
+橘子秘方
+{
+}
+</code></pre><h2 id="依赖注入-解除耦合-猫B和上帝的故事："><a href="#依赖注入-解除耦合-猫B和上帝的故事：" class="headerlink" title="依赖注入 解除耦合: 猫B和上帝的故事："></a>依赖注入 解除耦合: 猫B和上帝的故事：</h2><p>上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫B：我不要自己生产，猫A都 “妈卖批”了！你就不能生产好了再给我吃吗？<br>上帝尴尬：那好吧，答应你！<br>橘猫A（客串）：妈卖批！</p>
+<pre><code>class 猫B
+{
+    public $猫吃的橘子;
+    public function __contruct(橘子){
+        $this-&gt;猫吃的橘子 = 橘子;
+    }
+}
+橘子秘方
+{
+}
+$橘猫B = new 猫B（new 橘子秘方）;
+</code></pre><h2 id="控制反转-猫C和上帝的故事"><a href="#控制反转-猫C和上帝的故事" class="headerlink" title="控制反转: 猫C和上帝的故事:"></a>控制反转: 猫C和上帝的故事:</h2><p>上帝说：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫C：别BB，你都给猫B上产了，还让我自己生产，有毛病吧？<br>上帝尴尬：呵呵- -~~~ 那你想怎样？<br>猫C：都特么想当橘猫~呵呵 我要当 ”变色猫！ “<br>上帝：我日！有志气！<br>猫C：少BB 快来吧。</p>
+<pre><code>class 猫C
+{
+    public $猫吃的变色水果;
+    public function __contruct(变色水果){
+        $this-&gt;猫吃的变色水果 = 变色水果;
+    }
+}
+变色水果秘方（接口）
+{
+    public function bianseinit(){}
+}
+</code></pre><p>上帝：上面就是给你的出生路径了，那你到底是想变成什么猫呢 橘猫 粉猫？<br>猫C：先来个 橘猫吧！<br>上帝：妈卖批！！！</p>
+<pre><code>橘子秘方 implements 变色水果秘方
+{
+}
+</code></pre><p>猫C：谢谢上帝 我还要 变成粉猫的果实！！</p>
+<p>上帝：妈卖批</p>
+<pre><code>水蜜桃秘方 implements 变色水果秘方
+{
+}
+</code></pre><p>..<br>.. 贪婪无厌~！</p>
+<pre><code>$变色猫C = new 猫c（new 橘子秘方\水蜜桃秘方.......）;
+</code></pre><p>猫A（客串）：妈卖批！<br>猫B（客串）：妈卖批<br>故事结局END<br>上帝被痛扁一顿。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://16890.github.io/p/40615.html" data-id="cj9r3uo9h0004s0vy10y6jnqw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-07-11_Yaf" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/p/15903.html" class="article-date">
+  <time datetime="2017-07-11T14:25:28.000Z" itemprop="datePublished">2017-07-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/p/15903.html">关于Yaf的一些说明 【转自鸟哥】</a>
     </h1>
   
 
@@ -122,7 +281,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://16890.github.io/p/7bb00f09.html" data-id="cj9r1jxjk0002lwvyv684ra1i" class="article-share-link">Share</a>
+      <a data-url="https://16890.github.io/p/15903.html" data-id="cj9r3uo9f0003s0vyq1bxxxhx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -132,10 +291,10 @@
 
 
   
-    <article id="post-hello" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-05-09_nginx" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/p/3610a686.html" class="article-date">
-  <time datetime="2017-11-08T11:43:56.000Z" itemprop="datePublished">2017-11-08</time>
+    <a href="/p/7617.html" class="article-date">
+  <time datetime="2017-05-09T13:58:28.000Z" itemprop="datePublished">2017-05-09</time>
 </a>
     
   </div>
@@ -146,7 +305,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/p/3610a686.html">hello</a>
+      <a class="article-title" href="/p/7617.html">使用Nginx+Lua(OpenResty)开发高性能Web应用</a>
     </h1>
   
 
@@ -195,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://16890.github.io/p/3610a686.html" data-id="cj9r1jxjg0001lwvykhvj4nu1" class="article-share-link">Share</a>
+      <a data-url="https://16890.github.io/p/7617.html" data-id="cj9r3uo9d0002s0vy2e6ocb4c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -205,10 +364,10 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-22_redis" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/p/d4a1185.html" class="article-date">
-  <time datetime="2017-11-08T10:43:56.000Z" itemprop="datePublished">2017-11-08</time>
+    <a href="/p/61490.html" class="article-date">
+  <time datetime="2017-03-22T13:10:26.000Z" itemprop="datePublished">2017-03-22</time>
 </a>
     
   </div>
@@ -219,7 +378,52 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/p/d4a1185.html">hello world</a>
+      <a class="article-title" href="/p/61490.html">Redis未授权访问缺陷可轻易导致系统被黑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><!--markdown-->Redis因配置不当可以导致未授权访问，被攻击者恶意利用。当前流行的针对Redis未授权访问的一种新型攻击方式，在特定条件下，如果Redis以root身份运行，黑客可以给root账户写入SSH公钥文件，直接通过SSH登录受害服务器，可导致服务器权限被获取和数据删除、泄露或加密勒索事件发生，严重危害业务正常服务。</p>
+<hr>
+<h2 id="漏洞概要"><a href="#漏洞概要" class="headerlink" title="漏洞概要"></a>漏洞概要</h2><p>Redis 默认情况下，会绑定在 0.0.0.0:6379，这样将会将Redis服务暴露到公网上，如果在没有开启认证的情况下，可以导致任意用户在可以访问目标服务器的情况下未授权访问Redis以及读取Redis的数据。</p>
+<p>攻击者在未授权访问Redis的情况下可以利用Redis的相关方法，可以成功将自己的公钥写入目标服务器的 /root/.ssh 文件夹的authotrized_keys 文件中，进而可以直接登录目标服务器。</p>
+<h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Redis 安全模型的观念是: “请不要将Redis暴露在公开网络中, 因为让不受信任的客户接触到Redis是非常危险的” 。</p>
+<p>Redis 作者之所以放弃解决未授权访问导致的不安全性是因为, 99.99%使用Redis的场景都是在沙盒化的环境中, 为了0.01%的可能性增加安全规则的同时也增加了复杂性, 虽然这个问题的并不是不能解决的, 但是这在他的设计哲学中仍是不划算的。</p>
+<p>因为其他受信任用户需要使用Redis或者因为运维人员的疏忽等原因，部分Redis 绑定在0.0.0.0:6379，并且没有开启认证（这是Redis的默认配置），如果没有进行采用相关的策略，比如添加防火墙规则避免其他非信任来源 ip访问等，将会导致Redis服务直接暴露在公网上，导致其他用户可以直接在非授权情况下直接访问Redis服务并进行相关操作。</p>
+<p>利用Redis自身的相关方法，可以进行写文件操作，攻击者可以成功将自己的公钥写入目标服务器的 /root/.ssh 文件夹的authotrized_keys文件中，进而可以直接登录目标服务器。  （导致可以执行任何操作）</p>
+<h2 id="漏洞影响"><a href="#漏洞影响" class="headerlink" title="漏洞影响"></a>漏洞影响</h2><p>Redis 暴露在公网（即绑定在0.0.0.0:6379，目标IP公网可访问），并且没有开启相关认证和添加相关安全策略情况下可受影响而导致被利用。<br>通过ZoomEye 的搜索结果显示，有97707在公网可以直接访问的Redis服务。<br><img src="http://www.16890.cn/usr/uploads/2017/11/247067480.png" alt="1.png"><br>根据 ZoomEye 的探测，全球无验证可直接利用Redis 分布情况如下：<br><img src="http://www.16890.cn/usr/uploads/2017/11/2511324250.jpg" alt="2.jpg"><br>全球无验证可直接利用Redis TOP 10国家与地区：<br><img src="http://www.16890.cn/usr/uploads/2017/11/3939570578.jpg" alt="3.jpg"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://16890.github.io/p/61490.html" data-id="cj9r3uo990001s0vyb17yhxtl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2017-03-14_typecho" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/p/57104.html" class="article-date">
+  <time datetime="2017-03-14T10:19:26.000Z" itemprop="datePublished">2017-03-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/p/57104.html">nginx下安装typecho的相关问题</a>
     </h1>
   
 
@@ -269,7 +473,7 @@ fastcgi_param PATH_INFO $path_info;
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://16890.github.io/p/d4a1185.html" data-id="cj9r1jxj80000lwvy52nd9cyj" class="article-share-link">Share</a>
+      <a data-url="https://16890.github.io/p/57104.html" data-id="cj9r3uo910000s0vyr9ntcudn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -296,7 +500,7 @@ fastcgi_param PATH_INFO $path_info;
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li></ul>
     </div>
   </div>
 
@@ -309,15 +513,23 @@ fastcgi_param PATH_INFO $path_info;
       <ul>
         
           <li>
-            <a href="/p/7bb00f09.html">my blog</a>
+            <a href="/p/63720.html">Laravel框架中的增删改查</a>
           </li>
         
           <li>
-            <a href="/p/3610a686.html">hello</a>
+            <a href="/p/40615.html">故事：猫的出生理解依赖注入 控制反转</a>
           </li>
         
           <li>
-            <a href="/p/d4a1185.html">hello world</a>
+            <a href="/p/15903.html">关于Yaf的一些说明 【转自鸟哥】</a>
+          </li>
+        
+          <li>
+            <a href="/p/7617.html">使用Nginx+Lua(OpenResty)开发高性能Web应用</a>
+          </li>
+        
+          <li>
+            <a href="/p/61490.html">Redis未授权访问缺陷可轻易导致系统被黑</a>
           </li>
         
       </ul>
