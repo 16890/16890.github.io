@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>故事：猫的出生理解依赖注入 控制反转 | 新宇的博客 - 16890.github.io</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="依赖注入就是：向我们的程序中传入了一个已经被实例化好了的对象，这个对象内部的改变我们不需要知道，只要这个对象父类的接口没有变。先记住这句话，我们再来举一个例子。  故事：猫的出生理解依赖注入 控制反转大场景： 猫必须吃可以让他们变色的水果 才能成为真正不同颜色的猫！ 比如橘猫要吃橘子！场景： 猫的出生  强耦合关系: 猫A和上帝的故事：上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你">
+<meta property="og:type" content="article">
+<meta property="og:title" content="故事：猫的出生理解依赖注入 控制反转">
+<meta property="og:url" content="https://16890.github.io/2017/595224148.html">
+<meta property="og:site_name" content="新宇的博客 - 16890.github.io">
+<meta property="og:description" content="依赖注入就是：向我们的程序中传入了一个已经被实例化好了的对象，这个对象内部的改变我们不需要知道，只要这个对象父类的接口没有变。先记住这句话，我们再来举一个例子。  故事：猫的出生理解依赖注入 控制反转大场景： 猫必须吃可以让他们变色的水果 才能成为真正不同颜色的猫！ 比如橘猫要吃橘子！场景： 猫的出生  强耦合关系: 猫A和上帝的故事：上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-08T14:13:58.658Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="故事：猫的出生理解依赖注入 控制反转">
+<meta name="twitter:description" content="依赖注入就是：向我们的程序中传入了一个已经被实例化好了的对象，这个对象内部的改变我们不需要知道，只要这个对象父类的接口没有变。先记住这句话，我们再来举一个例子。  故事：猫的出生理解依赖注入 控制反转大场景： 猫必须吃可以让他们变色的水果 才能成为真正不同颜色的猫！ 比如橘猫要吃橘子！场景： 猫的出生  强耦合关系: 猫A和上帝的故事：上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你">
+  
+    <link rel="alternate" href="/atom.xml" title="新宇的博客 - 16890.github.io" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">新宇的博客 - 16890.github.io</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">新宇的博客 - 16890.github.io</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://16890.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20170816-cat" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/595224148.html" class="article-date">
+  <time datetime="2017-08-16T15:04:27.000Z" itemprop="datePublished">2017-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      故事：猫的出生理解依赖注入 控制反转
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><!--markdown-->依赖注入就是：向我们的<strong>程序</strong>中传入了一个已经被<strong>实例化好了</strong>的<strong>对象</strong>，这个对象内部的改变我们<strong>不需要</strong>知道，只要这个对象父类的<strong>接口没有变</strong>。先记住这句话，我们再来举一个例子。</p>
+<hr>
+<h2 id="故事：猫的出生理解依赖注入-控制反转"><a href="#故事：猫的出生理解依赖注入-控制反转" class="headerlink" title="故事：猫的出生理解依赖注入 控制反转"></a>故事：猫的出生理解依赖注入 控制反转</h2><p>大场景： 猫必须吃可以让他们变色的水果 才能成为真正不同颜色的猫！ 比如橘猫要吃橘子！<br>场景： 猫的出生 </p>
+<h2 id="强耦合关系-猫A和上帝的故事："><a href="#强耦合关系-猫A和上帝的故事：" class="headerlink" title="强耦合关系: 猫A和上帝的故事："></a>强耦合关系: 猫A和上帝的故事：</h2><p>上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫A：好！我这就生产。<br>猫A：死活生产不出来橘子，原来秘方是错的！<br>上帝：嘿嘿嘿~ 那就别出生了呗。你自己生产不出来。<br>猫A：妈卖批！</p>
+<pre><code>class 橘猫A
+{
+    public $猫吃的橘子;
+    public function __contruct(){
+        $this-&gt;猫吃的橘子 = new 橘子秘方;
+    }
+}
+橘子秘方
+{
+}
+</code></pre><h2 id="依赖注入-解除耦合-猫B和上帝的故事："><a href="#依赖注入-解除耦合-猫B和上帝的故事：" class="headerlink" title="依赖注入 解除耦合: 猫B和上帝的故事："></a>依赖注入 解除耦合: 猫B和上帝的故事：</h2><p>上帝：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫B：我不要自己生产，猫A都 “妈卖批”了！你就不能生产好了再给我吃吗？<br>上帝尴尬：那好吧，答应你！<br>橘猫A（客串）：妈卖批！</p>
+<pre><code>class 猫B
+{
+    public $猫吃的橘子;
+    public function __contruct(橘子){
+        $this-&gt;猫吃的橘子 = 橘子;
+    }
+}
+橘子秘方
+{
+}
+$橘猫B = new 猫B（new 橘子秘方）;
+</code></pre><h2 id="控制反转-猫C和上帝的故事"><a href="#控制反转-猫C和上帝的故事" class="headerlink" title="控制反转: 猫C和上帝的故事:"></a>控制反转: 猫C和上帝的故事:</h2><p>上帝说：你想成为高贵的橘猫，就必须自己生产橘子，我把秘方给你！你生产好了 自己吃掉 就能出生并且变成真正的橘猫了！<br>猫C：别BB，你都给猫B上产了，还让我自己生产，有毛病吧？<br>上帝尴尬：呵呵- -~~~ 那你想怎样？<br>猫C：都特么想当橘猫~呵呵 我要当 ”变色猫！ “<br>上帝：我日！有志气！<br>猫C：少BB 快来吧。</p>
+<pre><code>class 猫C
+{
+    public $猫吃的变色水果;
+    public function __contruct(变色水果){
+        $this-&gt;猫吃的变色水果 = 变色水果;
+    }
+}
+变色水果秘方（接口）
+{
+    public function bianseinit(){}
+}
+</code></pre><p>上帝：上面就是给你的出生路径了，那你到底是想变成什么猫呢 橘猫 粉猫？<br>猫C：先来个 橘猫吧！<br>上帝：妈卖批！！！</p>
+<pre><code>橘子秘方 implements 变色水果秘方
+{
+}
+</code></pre><p>猫C：谢谢上帝 我还要 变成粉猫的果实！！</p>
+<p>上帝：妈卖批</p>
+<pre><code>水蜜桃秘方 implements 变色水果秘方
+{
+}
+</code></pre><p>..<br>.. 贪婪无厌~！</p>
+<pre><code>$变色猫C = new 猫c（new 橘子秘方\水蜜桃秘方.......）;
+</code></pre><p>猫A（客串）：妈卖批！<br>猫B（客串）：妈卖批<br>故事结局END<br>上帝被痛扁一顿。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://16890.github.io/2017/595224148.html" data-id="cj9r51ei70003y4vy4p056sjj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/3011901424.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Laravel框架中的增删改查
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/2096172599.html" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于Yaf的一些说明 【转自鸟哥】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/3011901424.html">Laravel框架中的增删改查</a>
+          </li>
+        
+          <li>
+            <a href="/2017/595224148.html">故事：猫的出生理解依赖注入 控制反转</a>
+          </li>
+        
+          <li>
+            <a href="/2017/2096172599.html">关于Yaf的一些说明 【转自鸟哥】</a>
+          </li>
+        
+          <li>
+            <a href="/2017/3684926814.html">使用Nginx+Lua(OpenResty)开发高性能Web应用</a>
+          </li>
+        
+          <li>
+            <a href="/2017/3739252540.html">Redis未授权访问缺陷可轻易导致系统被黑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 新宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
