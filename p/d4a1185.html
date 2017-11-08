@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hello world | 新宇的博客 - 16890.github.io</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Typecho是由type和echo两个词合成的，来自于开发团队的头脑风暴。相比于wordpress的臃肿，Typecho是一个轻量级的博客系统。 在安装typecho之后，我的网站除了主页其他都是404，百度了一下也没有结果。看了一下typecho默认的url路径，应该是pathinfo的问题。我的网站使用的是阿里云的云服务器，采用LNMP的运行环境。 在默认的Nginx配置环境中是没有支持pa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hello world">
+<meta property="og:url" content="https://16890.github.io/p/d4a1185.html">
+<meta property="og:site_name" content="新宇的博客 - 16890.github.io">
+<meta property="og:description" content="Typecho是由type和echo两个词合成的，来自于开发团队的头脑风暴。相比于wordpress的臃肿，Typecho是一个轻量级的博客系统。 在安装typecho之后，我的网站除了主页其他都是404，百度了一下也没有结果。看了一下typecho默认的url路径，应该是pathinfo的问题。我的网站使用的是阿里云的云服务器，采用LNMP的运行环境。 在默认的Nginx配置环境中是没有支持pa">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-08T12:52:35.504Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hello world">
+<meta name="twitter:description" content="Typecho是由type和echo两个词合成的，来自于开发团队的头脑风暴。相比于wordpress的臃肿，Typecho是一个轻量级的博客系统。 在安装typecho之后，我的网站除了主页其他都是404，百度了一下也没有结果。看了一下typecho默认的url路径，应该是pathinfo的问题。我的网站使用的是阿里云的云服务器，采用LNMP的运行环境。 在默认的Nginx配置环境中是没有支持pa">
+  
+    <link rel="alternate" href="/atom.xml" title="新宇的博客 - 16890.github.io" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">新宇的博客 - 16890.github.io</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">新宇的博客 - 16890.github.io</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://16890.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/p/d4a1185.html" class="article-date">
+  <time datetime="2017-11-08T10:43:56.000Z" itemprop="datePublished">2017-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hello world
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><!--markdown-->Typecho是由type和echo两个词合成的，来自于开发团队的头脑风暴。相比于wordpress的臃肿，Typecho是一个轻量级的博客系统。</p>
+<p>在安装typecho之后，我的网站除了主页其他都是404，百度了一下也没有结果。看了一下typecho默认的url路径，应该是pathinfo的问题。我的网站使用的是阿里云的云服务器，采用LNMP的运行环境。</p>
+<p>在默认的Nginx配置环境中是没有支持pathinfo模式的，我们需要设置启动才可以。</p>
+<p>根据官方文档提供的资料，要支持pathinfo，要改成：</p>
+<pre><code>location ~ .*\.php(\/.*)*$
+</code></pre><p><a href="http://docs.typecho.org/servers" target="_blank" rel="external">官方文档在此</a></p>
+<p>然后在location里加上：</p>
+<pre><code>set $path_info &quot;&quot;;
+set $real_script_name $fastcgi_script_name;
+if ($fastcgi_script_name ~ &quot;^(.+?\.php)(/.+)$&quot;) {
+        set $real_script_name $1;
+        set $path_info $2;
+}
+fastcgi_param SCRIPT_FILENAME $document_root$real_script_name;
+fastcgi_param SCRIPT_NAME $real_script_name;
+fastcgi_param PATH_INFO $path_info;
+</code></pre><p>配置网站nginx.conf文件和vhost.conf文件，把配置文件不一样的部分修改之后，重启nginx服务</p>
+<pre><code>shell&gt; service nginx reload
+</code></pre><p>然后可以看到所有的链接均可以正常访问。</p>
+<p>如果要支持url重写,还需要设置:(请把相关内容修改为与自己主机相对应)</p>
+<pre><code>server {
+    listen          80;
+    server_name     yourdomain.com;
+    root            /home/yourdomain/www/;
+    index           index.html index.htm index.php;
+
+    if (!-e $request_filename) {
+        rewrite ^(.*)$ /index.php$1 last;
+    }
+
+    location ~ .*\.php(\/.*)*$ {
+        include fastcgi.conf;
+        fastcgi_pass  127.0.0.1:9000;
+    }
+
+    access_log logs/yourdomain.log combined;
+}
+</code></pre><p>再次重启nginx服务,url重写也可以正常使用. 至此,Typecho安装完成.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://16890.github.io/p/d4a1185.html" data-id="cj9r1jxj80000lwvy52nd9cyj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/p/3610a686.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hello
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/p/7bb00f09.html">my blog</a>
+          </li>
+        
+          <li>
+            <a href="/p/3610a686.html">hello</a>
+          </li>
+        
+          <li>
+            <a href="/p/d4a1185.html">hello world</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 新宇<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

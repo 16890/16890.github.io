@@ -5,17 +5,17 @@
   
   <title>hello | 新宇的博客 - 16890.github.io</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="OpenResty® 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。 OpenResty® 通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty 团队自主开发），从而将 Nginx 有效地变成一个强大的通用 Web">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hello">
 <meta property="og:url" content="https://16890.github.io/p/3610a686.html">
 <meta property="og:site_name" content="新宇的博客 - 16890.github.io">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="OpenResty® 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。 OpenResty® 通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty 团队自主开发），从而将 Nginx 有效地变成一个强大的通用 Web">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-11-08T12:45:32.790Z">
+<meta property="og:updated_time" content="2017-11-08T12:53:09.639Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hello">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:description" content="OpenResty® 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。 OpenResty® 通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty 团队自主开发），从而将 Nginx 有效地变成一个强大的通用 Web">
   
     <link rel="alternate" href="/atom.xml" title="新宇的博客 - 16890.github.io" type="application/atom+xml">
   
@@ -90,18 +90,48 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+        <p><!--markdown-->OpenResty® 是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。</p>
+<p>OpenResty® 通过汇聚各种设计精良的 Nginx 模块（主要由 OpenResty 团队自主开发），从而将 Nginx 有效地变成一个强大的通用 Web 应用平台。这样，Web 开发人员和系统工程师可以使用 Lua 脚本语言调动 Nginx 支持的各种 C 以及 Lua 模块，快速构造出足以胜任 10K 乃至 1000K 以上单机并发连接的高性能 Web 应用系统。</p>
+<p>OpenResty® 的目标是让你的Web服务直接跑在 Nginx 服务内部，充分利用 Nginx 的非阻塞 I/O 模型，不仅仅对 HTTP 客户端请求,甚至于对远程后端诸如 MySQL、PostgreSQL、Memcached 以及 Redis 等都进行一致的高性能响应。</p>
+<p><a href="http://openresty.org/cn" target="_blank" rel="external">http://openresty.org/cn</a></p>
+<p>在互联网公司，Nginx可以说是标配组件，但是主要场景还是负载均衡、反向代理、代理缓存、限流等场景；而把Nginx作为一个Web容器使用的还不是那么广泛。Nginx的高性能是大家公认的，而Nginx开发主要是以C/C++模块的形式进行，整体学习和开发成本偏高；如果有一种简单的语言来实现Web应用的开发，那么Nginx绝对是把好的瑞士军刀；目前Nginx团队也开始意识到这个问题，开发了nginxScript：可以在Nginx中使用JavaScript进行动态配置一些变量和动态脚本执行；而目前市面上用的非常成熟的扩展是由章亦春将Lua和Nginx粘合的ngx_lua模块，并且将Nginx核心、LuaJIT、ngx_lua模块、许多有用的Lua库和常用的第三方Nginx模块组合在一起成为OpenResty，这样开发人员就可以安装OpenResty，使用Lua编写脚本，然后部署到Nginx Web容器中运行。从而非常轻松就能开发出高性能的Web服务。</p>
+<p>接下来我们就认识下Nginx、Lua、ngx_lua模块和ngx_lua到底能开发哪些类型的web应用。</p>
+<hr>
+<p>一、ngx_lua简介</p>
+<p>1、Nginx优点</p>
+<p>Nginx设计为一个主进程多个工作进程的工作模式，每个进程是单线程来处理多个连接，而且每个工作进程采用了非阻塞I/O来处理多个连接，从而减少了线程上下文切换，从而实现了公认的高性能、高并发；因此在生成环境中会通过把CPU绑定给Nginx工作进程从而提升其性能；另外因为单线程工作模式的特点，内存占用就非常少了。</p>
+<p>Nginx更改配置重启速度非常快，可以毫秒级，而且支持不停止Nginx进行升级Nginx版本、动态重载Nginx配置。</p>
+<p>Nginx模块也是非常多，功能也很强劲，不仅可以作为http负载均衡，Nginx发布1.9.0版本还支持TCP负载均衡，还可以很容易的实现内容缓存、web服务器、反向代理、访问控制等功能。</p>
+<p>2、Lua的优点</p>
+<p>Lua是一种轻量级、可嵌入式的脚本语言，这样可以非常容易的嵌入到其他语言中使用。另外Lua提供了协程并发，即以同步调用的方式进行异步执行，从而实现并发，比起回调机制的并发来说代码更容易编写和理解，排查问题也会容易。Lua还提供了闭包机制，函数可以作为First Class Value 进行参数传递，另外其实现了标记清除垃圾收集。</p>
+<p>因为Lua的小巧轻量级，可以在Nginx中嵌入Lua VM，请求的时候创建一个VM，请求结束的时候回收VM。</p>
+<p>3、什么是ngx_lua</p>
+<p>ngx_lua是Nginx的一个模块，将Lua嵌入到Nginx中，从而可以使用Lua来编写脚本，这样就可以使用Lua编写应用脚本，部署到Nginx中运行，即Nginx变成了一个Web容器；这样开发人员就可以使用Lua语言开发高性能Web应用了。</p>
+<p>ngx_lua提供了与Nginx交互的很多的API，对于开发人员来说只需要学习这些API就可以进行功能开发，而对于开发web应用来说，如果接触过Servlet的话，其开发和Servlet类似，无外乎就是知道接收请求、参数解析、功能处理、返回响应这几步的API是什么样子的。</p>
+<p>4、开发环境</p>
+<p>我们可以使用OpenResty来搭建开发环境，OpenResty将Nginx核心、LuaJIT、许多有用的Lua库和Nginx第三方模块打包在一起；这样开发人员只需要安装OpenResty，不需要了解Nginx核心和写复杂的C/C++模块就可以，只需要使用Lua语言进行Web应用开发了。</p>
+<p>如何安装可以参考《跟我学Nginx+Lua开发》。</p>
+<p>5、OpenResty生态</p>
+<p>OpenResty提供了一些常用的ngx_lua开发模块：如</p>
+<p>  lua-resty-memcached</p>
+<p>  lua-resty-mysql</p>
+<p>  lua-resty-redis</p>
+<p>  lua-resty-dns</p>
+<p>  lua-resty-limit-traffic</p>
+<p>  lua-resty-template</p>
+<p>这些模块涉及到如mysql数据库、redis、限流、模块渲染等常用功能组件；另外也有很多第三方的ngx_lua组件供我们使用，对于大部分应用场景来说现在生态环境中的组件已经足够多了；如果不满足需求也可以自己去写来完成自己的需求。</p>
+<p>6、场景</p>
+<p>理论上可以使用ngx_lua开发各种复杂的web应用，不过Lua是一种脚本/动态语言，不适合业务逻辑比较重的场景，适合小巧的应用场景，代码行数保持在几十行到几千行。目前见到的一些应用场景：</p>
+<p>web应用：会进行一些业务逻辑处理，甚至进行耗CPU的模板渲染，一般流程：mysql/redis/http获取数据、业务处理、产生JSON/XML/模板渲染内容，比如京东的列表页/商品详情页；</p>
+<p>接入网关：实现如数据校验前置、缓存前置、数据过滤、API请求聚合、AB测试、灰度发布、降级、监控等功能，比如京东的交易大Nginx节点、无线部门正在开发的无线网关、单品页统一服务、实时价格、动态服务；</p>
+<p>Web防火墙：可以进行IP/URL/UserAgent/Referer黑名单、限流等功能；</p>
+<p>缓存服务器：可以对响应内容进行缓存，减少到后端的请求，从而提升性能；</p>
+<p>其他：如静态资源服务器、消息推送服务、缩略图裁剪等。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://16890.github.io/p/3610a686.html" data-id="cj9r1ivmz0000h4vyhad7m2mg" class="article-share-link">Share</a>
+      <a data-url="https://16890.github.io/p/3610a686.html" data-id="cj9r1jxjg0001lwvykhvj4nu1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -120,7 +150,7 @@
     </a>
   
   
-    <a href="/p/7bb00f09.html" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/p/d4a1185.html" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">hello world</div>
     </a>
@@ -167,7 +197,7 @@
           </li>
         
           <li>
-            <a href="/p/7bb00f09.html">hello world</a>
+            <a href="/p/d4a1185.html">hello world</a>
           </li>
         
       </ul>
